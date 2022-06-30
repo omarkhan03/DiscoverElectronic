@@ -25,19 +25,22 @@ import com.example.vaporwaveappdemo.ui.theme.Purple500
 import com.example.vaporwaveappdemo.ui.theme.Purple700
 
 @Composable
-fun AlbumCard(navController: NavController, number: Int) {
+fun AlbumCard(navController: NavController, number: Int, albumList: List<Album>) {
 
-    val album = Album(number)
+    val album = albumList[number-1]
     val name = album.name
     val artist = album.artist
     val art = album.art
+    val listened = album.listened
+
+    val connections = getConnections(number)
 
     var next by remember {
-        mutableStateOf(number+1)
+        mutableStateOf(connections[0])
     }
 
     var prev by remember {
-        mutableStateOf(number-1)
+        mutableStateOf(connections[1])
     }
 
     Box(modifier = Modifier.fillMaxSize().background(color = Color(31, 1, 56))) {
@@ -68,9 +71,8 @@ fun AlbumCard(navController: NavController, number: Int) {
                     Text("Listened?", modifier = Modifier.padding(start = 20.dp, top = 12.dp),
                         color = Color.Black)
 
-                    val checkedState = remember { mutableStateOf(true) }
-                    Checkbox(checked = checkedState.value,
-                        onCheckedChange = { checkedState.value = it },
+                    Checkbox(checked = listened.value,
+                        onCheckedChange = { listened.value = it },
                     )
                 }
 

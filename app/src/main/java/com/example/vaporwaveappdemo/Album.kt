@@ -1,5 +1,8 @@
 package com.example.vaporwaveappdemo
 
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+
 class Album(number : Int) {
 
     val details = when ( number ) {
@@ -13,4 +16,7 @@ class Album(number : Int) {
     val name = details[0]
     val artist = details[1]
     val art = details[2].toInt()
+
+    val listened = mutableStateOf(false)
+
 }

@@ -23,12 +23,22 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
-                ) {
-                   Navigation()
+                ) { val albumList = buildChart()
+                    Navigation(albumList)
                 }
             }
         }
     }
+}
+
+fun buildChart(): List<Album> {
+    val albumList = listOf(
+        Album(1),
+        Album(2),
+        Album(3),
+    )
+
+    return albumList
 }
 
 @Composable
