@@ -44,10 +44,11 @@ fun AlbumCard(navController: NavController, number: Int, albumList: List<Album>)
     }
 
     Box(modifier = Modifier.fillMaxSize().background(color = Color(31, 1, 56))) {
+
         Card(elevation = 6.dp,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 200.dp, bottom = 200.dp, start = 70.dp, end = 70.dp),
+                .padding(top = 20.dp, bottom = 200.dp, start = 20.dp, end = 20.dp),
             backgroundColor = Color(192, 176, 209)
 
         ) {

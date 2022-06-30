@@ -6,9 +6,9 @@ import androidx.compose.runtime.remember
 class Album(number : Int) {
 
     val details = when ( number ) {
-        1-> listOf("Floral Shoppe", "Macintosh Plus", R.drawable.album1.toString())
-        2-> listOf("I'll Try Living Like This", "death's dynamic shroud", R.drawable.album2.toString())
-        3-> listOf("Faith in Persona", "death's dynamic shroud", R.drawable.album3.toString())
+        1-> listOf("Kid A", "Radiohead", R.drawable.album1.toString())
+        2-> listOf("Selected Ambient Works 85-92", "Aphex Twin", R.drawable.album2.toString())
+        3-> listOf("Lift Your Skinny Fists Like Antennas to Heaven", "Godspeed you Black Emperor", R.drawable.album3.toString())
 
         else -> {listOf("Floral Shoppe", "Macintosh Plus", "R.drawable.album1")}
     }
