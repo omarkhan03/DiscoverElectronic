@@ -94,19 +94,25 @@ fun AlbumCard(navController: NavController, number: Int, albumList: List<Album>)
                             .size(35.dp).padding(start=8.dp, top=10.dp))
                 }
 
-
-
                 for (connection in connections) {
-                    Button(
-                        onClick = {
-                            navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs((connection.key)))
-                        },
-                        modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 5.dp, end = 5.dp).fillMaxWidth()) {
-                            Text(text = connection.value,  textAlign = TextAlign.Center)
 
-                        Icon(imageVector = Icons.Filled.ArrowForward, contentDescription = "Localized description",
-                            modifier=Modifier.size(20.dp))
+                    Row(horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxWidth()) {
+                        Button(
+                            onClick = {
+                                navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs((connection.key)))
+                            },
+                            modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 5.dp).width(270.dp)) {
+
+                            Text(text = connection.value,  textAlign = TextAlign.Center)
                         }
+                        Icon(imageVector = Icons.Filled.ArrowForward, contentDescription = "Localized description",
+                        modifier=Modifier.size(50.dp).padding(top=10.dp), tint = Color.Black)//Color(243, 146, 55))
+                    }
+
+
+
+
 
                     }
                 }
