@@ -100,14 +100,29 @@ fun AlbumCard(navController: NavController, number: Int, albumList: List<Album>)
                         modifier = Modifier.fillMaxWidth()) {
                         Button(
                             onClick = {
-                                navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs((connection.key)))
-                            },
-                            modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 5.dp).width(270.dp)) {
+                                navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs((connection.value.first)))
+                            }, shape = RoundedCornerShape(
+                                topEnd = 30.dp,
+                                bottomEnd = 30.dp
+                        ), modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 5.dp)
+                                .border(1.dp, color = Color.Black, shape = RoundedCornerShape(
+                                    topEnd = 30.dp,
+                                    bottomEnd = 30.dp))
+                        ) {
 
-                            Text(text = connection.value,  textAlign = TextAlign.Center)
+                            Text(
+                                text = connection.value.second,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.width(250.dp).padding(end=10.dp)
+                            )
+                            Icon(
+                                imageVector = Icons.Filled.ArrowForward,
+                                contentDescription = "Localized description",
+                                modifier = Modifier.size(50.dp).padding(),
+                                tint = Color.Black
+                            )
                         }
-                        Icon(imageVector = Icons.Filled.ArrowForward, contentDescription = "Localized description",
-                        modifier=Modifier.size(50.dp).padding(top=10.dp), tint = Color.Black)//Color(243, 146, 55))
+
                     }
 
 

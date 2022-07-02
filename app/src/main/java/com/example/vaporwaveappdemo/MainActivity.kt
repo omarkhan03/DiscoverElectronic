@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -32,7 +31,8 @@ class MainActivity : ComponentActivity() {
 }
 
 fun buildChart(): List<Album> {
-    val albumList = listOf(
+
+    return listOf(
         Album(1),
         Album(2),
         Album(3),
@@ -45,10 +45,12 @@ fun buildChart(): List<Album> {
         Album(10),
         Album(11),
         Album(12),
-        Album(13)
+        Album(13),
+        Album(14),
+        Album(15),
+        Album(16),
+        Album(17),
     )
-
-    return albumList
 }
 
 @Composable
