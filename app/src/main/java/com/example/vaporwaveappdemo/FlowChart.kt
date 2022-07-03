@@ -157,7 +157,8 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
         26-> hashMapOf(
             1 to Pair(25, "More like this."),
             2 to Pair(27, "Even more."),
-            3 to Pair(51, "Feeling shpongled? More psychedelic.")
+            3 to Pair(51, "Feeling shpongled? More psychedelic."),
+            4 to Pair(53, "Focus on fast, hard-hitting drums."),
         )
 
         27-> hashMapOf(
@@ -240,7 +241,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
         )
 
         43-> hashMapOf(
-            1 to Pair(43, "This style of synths, but shorter songs and carelessly happy.")
+            1 to Pair(41, "Back to Phaedra.")
         )
 
         44-> hashMapOf(
@@ -280,16 +281,20 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
 
         51-> hashMapOf(
             1 to Pair(53, "More focus on fast, hard hitting drums."),
-            3 to Pair(52, "A big collection of careless, fun music to dance to.")
+            2 to Pair(52, "A big collection of careless, fun music to dance to."),
+            3 to Pair(26, "Back to acccelerator."),
+            3 to Pair(49, "Back to discovery."),
         )
 
         52-> hashMapOf(
-            1 to Pair(53, "Feeling shpongled? Back to Shpongle."),
-            3 to Pair(36, "Back to Timeless.")
+            1 to Pair(51, "Feeling shpongled? Back to Shpongle."),
+            2 to Pair(53, "Back to Timeless.")
         )
 
         53-> hashMapOf(
             1 to Pair(52, "Wanna feel like you're exploring a frozen wasteland?"),
+            2 to Pair(26, "Back to Accellerator."),
+            3 to Pair(51, "Feeling shpongled? Back to Shpongle.")
         )
 
         54-> hashMapOf(

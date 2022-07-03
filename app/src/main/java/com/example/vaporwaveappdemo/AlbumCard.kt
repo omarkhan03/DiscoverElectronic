@@ -12,7 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
+import androidx.navigation.compose.composable
 import com.example.vaporwaveappdemo.ui.theme.Purple200
 import com.example.vaporwaveappdemo.ui.theme.Purple500
 import com.example.vaporwaveappdemo.ui.theme.Purple700
@@ -52,82 +53,128 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
         .fillMaxSize()
         .background(color = Color(204, 190, 237))) {
 
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 20.dp, bottom = 20.dp, start = 20.dp, end = 20.dp),
+        Column() {
 
-        ) {
+            Row(horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()) {
 
-            Column(Modifier.verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.CenterHorizontally) {
-
-                Text("#$number: $name", color = Color.Black, fontWeight = FontWeight.Bold)
-                Text("Artist: $artist", color = Color.Black)
-
-                Image(painter = painterResource(id = art),
-                    contentDescription = "Album art",
-                    modifier = Modifier
-                        .size(200.dp)
-                        .padding(top = 5.dp))
-
-                Row(horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxWidth()) {
-                    Text("Listened?", modifier = Modifier.padding(top = 12.dp),
-                        color = Color.Black)
-
-                    Checkbox(checked = listened.value,
-                        onCheckedChange = { listened.value = it },
-                    )
-
-                    Text(text = "More info:", modifier=Modifier.padding(start=10.dp,top=12.dp, bottom=10.dp), color = Color.Black)
-
-                    Image(painter = painterResource(id = R.drawable.rym),
-                        contentDescription = "Rym link",
-                        modifier= Modifier
-                            .clickable(
-                                enabled = true,
-                                onClickLabel = "Clickable image",
-                                onClick = {
-                                    context.startActivity(intent)
-                                }
-                            )
-                            .size(35.dp).padding(start=8.dp, top=10.dp))
+                Box(
+                    modifier = Modifier.clickable {
+                        navController.navigate(com.example.vaporwaveappdemo.Screen.HomeScreen.route)
+                    }
+                        .padding(top = 15.dp, bottom = 15.dp, start = 15.dp, end = 15.dp)
+                ) {
+                    Row {
+                        Icon(Icons.Filled.Home, contentDescription = null, tint = Color.Black)
+                        Text("  Home", color = Color.Black, fontWeight = FontWeight.Bold)
+                    }
                 }
 
-                for (connection in connections) {
+                Box(
+                    modifier = Modifier.clickable {
+                        /*todo*/
+                    }
+                        .padding(top = 15.dp, bottom = 15.dp, start = 15.dp, end = 15.dp)
+                ) {
+                    Row {
+                        Icon(Icons.Filled.List, contentDescription = null, tint = Color.Black)
+                        Text("  Checklist", color = Color.Black, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+
+            Divider(color = Color.Black, thickness = 1.dp)
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 5.dp, bottom = 10.dp, start = 20.dp, end = 20.dp),
+
+                ) {
+
+                Column(Modifier.verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally) {
+
+                    Text("#$number: $name", color = Color.Black, fontWeight = FontWeight.Bold)
+                    Text("Artist: $artist", color = Color.Black)
+
+                    Image(painter = painterResource(id = art),
+                        contentDescription = "Album art",
+                        modifier = Modifier
+                            .size(200.dp)
+                            .padding(top = 5.dp))
 
                     Row(horizontalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxWidth()) {
-                        Button(
-                            onClick = {
-                                navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs((connection.value.first)))
-                            }, shape = RoundedCornerShape(
-                                topEnd = 30.dp,
-                                bottomEnd = 30.dp
-                        ), modifier = Modifier.padding(top = 5.dp, bottom = 5.dp, start = 5.dp)
-                                .border(1.dp, color = Color.Black, shape = RoundedCornerShape(
-                                    topEnd = 30.dp,
-                                    bottomEnd = 30.dp))
-                        ) {
+                        Text("Listened?", modifier = Modifier.padding(top = 12.dp),
+                            color = Color.Black)
 
-                            Text(
-                                text = connection.value.second,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.width(250.dp).padding(end=10.dp)
-                            )
-                            Icon(
-                                imageVector = Icons.Filled.ArrowForward,
-                                contentDescription = "Localized description",
-                                modifier = Modifier.size(50.dp).padding(),
-                                tint = Color.Black
-                            )
-                        }
+                        Checkbox(checked = listened.value,
+                            onCheckedChange = { listened.value = it },
+                        )
 
+                        Text(text = "More info:", modifier=Modifier.padding(start=10.dp,top=12.dp, bottom=10.dp), color = Color.Black)
+
+                        Image(painter = painterResource(id = R.drawable.rym),
+                            contentDescription = "Rym link",
+                            modifier= Modifier
+                                .clickable(
+                                    enabled = true,
+                                    onClickLabel = "Clickable image",
+                                    onClick = {
+                                        context.startActivity(intent)
+                                    }
+                                )
+                                .size(35.dp)
+                                .padding(start = 8.dp, top = 10.dp))
                     }
+
+                    Divider(color = Color.Black, thickness = 1.dp)
+
+                    for (connection in connections) {
+
+                        Row(horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()) {
+                            Button(
+                                onClick = {
+                                    navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs((connection.value.first)))
+                                }, shape = RoundedCornerShape(
+                                    topEnd = 30.dp,
+                                    bottomEnd = 30.dp
+                                ), modifier = Modifier
+                                    .padding(top = 5.dp, bottom = 5.dp, start = 5.dp)
+                                    .border(
+                                        1.dp, color = Color.Black, shape = RoundedCornerShape(
+                                            topEnd = 30.dp,
+                                            bottomEnd = 30.dp
+                                        )
+                                    )
+                            ) {
+
+                                Text(
+                                    text = connection.value.second,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier
+                                        .width(250.dp)
+                                        .padding(end = 10.dp)
+                                )
+                                Icon(
+                                    imageVector = Icons.Filled.ArrowForward,
+                                    contentDescription = "Localized description",
+                                    modifier = Modifier
+                                        .size(50.dp)
+                                        .padding(),
+                                    tint = Color.Black
+                                )
+                            }
+
+                        }
                     }
                 }
+            }
+
         }
+
     }
 }
 
