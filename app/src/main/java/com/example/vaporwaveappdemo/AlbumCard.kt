@@ -37,7 +37,7 @@ import com.example.vaporwaveappdemo.ui.theme.Purple700
 @Composable
 fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<Album>) {
 
-    val album = albumList[number-1]
+    val album = albumList[number - 1]
     val name = album.name
     val artist = album.artist
     val rym = album.rym
@@ -49,20 +49,25 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
     val context = LocalContext.current
     val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(rym)) }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color(204, 190, 237))) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(186, 164, 237))
+    ) {
 
-        Column() {
+        Column {
 
-            Row(horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()) {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
 
                 Box(
-                    modifier = Modifier.clickable {
-                        navController.navigate(com.example.vaporwaveappdemo.Screen.HomeScreen.route)
-                    }
-                        .padding(top = 15.dp, bottom = 15.dp, start = 15.dp, end = 15.dp)
+                    modifier = Modifier
+                        .clickable {
+                            navController.navigate(com.example.vaporwaveappdemo.Screen.HomeScreen.route)
+                        }
+                        .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
                 ) {
                     Row {
                         Icon(Icons.Filled.Home, contentDescription = null, tint = Color.Black)
@@ -71,10 +76,11 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                 }
 
                 Box(
-                    modifier = Modifier.clickable {
-                        /*todo*/
-                    }
-                        .padding(top = 15.dp, bottom = 15.dp, start = 15.dp, end = 15.dp)
+                    modifier = Modifier
+                        .clickable {
+                            /*todo*/
+                        }
+                        .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
                 ) {
                     Row {
                         Icon(Icons.Filled.List, contentDescription = null, tint = Color.Black)
@@ -85,64 +91,104 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
 
             Divider(color = Color.Black, thickness = 1.dp)
 
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = 5.dp, bottom = 10.dp, start = 20.dp, end = 20.dp),
+            Column(
+                Modifier.verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = Color(204, 190, 237))
                 ) {
 
-                Column(Modifier.verticalScroll(rememberScrollState()),
-                    horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-                    Text("#$number: $name", color = Color.Black, fontWeight = FontWeight.Bold)
-                    Text("Artist: $artist", color = Color.Black)
+                        Text(
+                            "#$number: $name", color = Color.Black, fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(top = 10.dp)
+                        )
+                        Text("Artist: $artist", color = Color.Black)
 
-                    Image(painter = painterResource(id = art),
-                        contentDescription = "Album art",
-                        modifier = Modifier
-                            .size(200.dp)
-                            .padding(top = 5.dp))
-
-                    Row(horizontalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxWidth()) {
-                        Text("Listened?", modifier = Modifier.padding(top = 12.dp),
-                            color = Color.Black)
-
-                        Checkbox(checked = listened.value,
-                            onCheckedChange = { listened.value = it },
+                        Image(
+                            painter = painterResource(id = art),
+                            contentDescription = "Album art",
+                            modifier = Modifier
+                                .size(200.dp)
+                                .padding(top = 5.dp)
                         )
 
-                        Text(text = "More info:", modifier=Modifier.padding(start=10.dp,top=12.dp, bottom=10.dp), color = Color.Black)
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                "Listened?", modifier = Modifier.padding(top = 12.dp),
+                                color = Color.Black
+                            )
 
-                        Image(painter = painterResource(id = R.drawable.rym),
-                            contentDescription = "Rym link",
-                            modifier= Modifier
-                                .clickable(
-                                    enabled = true,
-                                    onClickLabel = "Clickable image",
-                                    onClick = {
-                                        context.startActivity(intent)
-                                    }
-                                )
-                                .size(35.dp)
-                                .padding(start = 8.dp, top = 10.dp))
+                            Checkbox(
+                                checked = listened.value,
+                                onCheckedChange = { listened.value = it },
+                            )
+
+                            Text(
+                                text = "More info:",
+                                modifier = Modifier.padding(
+                                    start = 10.dp,
+                                    top = 12.dp,
+                                    bottom = 10.dp
+                                ),
+                                color = Color.Black
+                            )
+
+                            Image(painter = painterResource(id = R.drawable.rym),
+                                contentDescription = "Rym link",
+                                modifier = Modifier
+                                    .clickable(
+                                        enabled = true,
+                                        onClickLabel = "Clickable image",
+                                        onClick = {
+                                            context.startActivity(intent)
+                                        }
+                                    )
+                                    .size(35.dp)
+                                    .padding(start = 8.dp, top = 10.dp))
+                        }
+
                     }
 
-                    Divider(color = Color.Black, thickness = 1.dp)
 
-                    for (connection in connections) {
+                }
 
-                        Row(horizontalArrangement = Arrangement.Center,
-                            modifier = Modifier.fillMaxWidth()) {
+
+
+                Divider(color = Color.Black, thickness = 1.dp)
+
+                for (connection in connections) {
+
+                    Box(
+                        modifier = Modifier
+                            .background(color = Color(186, 164, 237))
+                            .wrapContentSize()
+                    ) {
+
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Button(
                                 onClick = {
-                                    navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs((connection.value.first)))
+                                    navController.navigate(
+                                        com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs(
+                                            (connection.value.first)
+                                        )
+                                    )
                                 }, shape = RoundedCornerShape(
                                     topEnd = 30.dp,
                                     bottomEnd = 30.dp
                                 ), modifier = Modifier
-                                    .padding(top = 5.dp, bottom = 5.dp, start = 5.dp)
+                                    .padding(top = 10.dp, start = 5.dp)
                                     .border(
                                         1.dp, color = Color.Black, shape = RoundedCornerShape(
                                             topEnd = 30.dp,
@@ -167,14 +213,13 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                     tint = Color.Black
                                 )
                             }
-
                         }
                     }
                 }
             }
-
         }
 
     }
+
 }
 
