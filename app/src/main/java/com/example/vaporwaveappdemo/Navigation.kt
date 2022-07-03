@@ -1,16 +1,14 @@
-package com.example.vaporwaveappdemo.ui.theme
+package com.example.vaporwaveappdemo
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import com.example.vaporwaveappdemo.*
 
 @Composable
-fun Navigation(albumList : List<Album>) {
+fun Navigation(albumList : MutableList<Album>) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {

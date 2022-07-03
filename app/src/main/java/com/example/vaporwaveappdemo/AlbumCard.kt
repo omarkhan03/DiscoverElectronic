@@ -34,18 +34,19 @@ import com.example.vaporwaveappdemo.ui.theme.Purple500
 import com.example.vaporwaveappdemo.ui.theme.Purple700
 
 @Composable
-fun AlbumCard(navController: NavController, number: Int, albumList: List<Album>) {
+fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<Album>) {
 
     val album = albumList[number-1]
     val name = album.name
     val artist = album.artist
+    val rym = album.rym
     val art = album.art
     val listened = album.listened
 
     val connections = getConnections(number)
 
     val context = LocalContext.current
-    val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://rateyourmusic.com/release/album/radiohead/kid-a/")) }
+    val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(rym)) }
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -124,11 +125,6 @@ fun AlbumCard(navController: NavController, number: Int, albumList: List<Album>)
                         }
 
                     }
-
-
-
-
-
                     }
                 }
         }
