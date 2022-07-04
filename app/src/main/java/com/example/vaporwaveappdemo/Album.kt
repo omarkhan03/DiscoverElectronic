@@ -10,7 +10,7 @@ class Album(number : Int) {
             "https://rateyourmusic.com/release/album/radiohead/kid-a/")
         2-> listOf("Selected Ambient Works 85-92", "Aphex Twin", R.drawable.album2.toString(),
             "https://rateyourmusic.com/release/album/aphex-twin/selected-ambient-works-85-92/")
-        3-> listOf("Lift Your Skinny Fists Like Antennas to Heaven", "Godspeed you Black Emperor", R.drawable.album3.toString(),
+        3-> listOf("Lift Your Skinny Fists", "Godspeed you Black Emperor", R.drawable.album3.toString(),
             "https://rateyourmusic.com/release/album/godspeed-you-black-emperor/lift-yr-skinny-fists-like-antennas-to-heaven/")
         4-> listOf("Psychic", "Darkside", R.drawable.album4.toString(),
             "https://rateyourmusic.com/release/album/darkside/psychic/")

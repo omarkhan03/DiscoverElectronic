@@ -201,7 +201,8 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
         )
 
         35-> hashMapOf(
-            1 to Pair(26, "Less ambient")
+            1 to Pair(26, "Less ambient."),
+            2 to Pair(36, "Back to Timewind.")
         )
 
         36-> hashMapOf(
