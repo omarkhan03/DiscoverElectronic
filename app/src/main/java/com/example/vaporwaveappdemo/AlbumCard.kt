@@ -2,6 +2,7 @@ package com.example.vaporwaveappdemo
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color.rgb
 import android.inputmethodservice.Keyboard
 import android.media.Image
 import android.net.Uri
@@ -52,7 +53,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(186, 164, 237))
+            .background(color = Color(50, 56, 70))
     ) {
 
         Column {
@@ -70,8 +71,8 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                         .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
                 ) {
                     Row {
-                        Icon(Icons.Filled.Home, contentDescription = null, tint = Color.Black)
-                        Text("  Home", color = Color.Black, fontWeight = FontWeight.Bold)
+                        Icon(Icons.Filled.Home, contentDescription = null, tint = Color.White)
+                        Text("  Home", color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 }
 
@@ -83,13 +84,13 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                         .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
                 ) {
                     Row {
-                        Icon(Icons.Filled.List, contentDescription = null, tint = Color.Black)
-                        Text("  Checklist", color = Color.Black, fontWeight = FontWeight.Bold)
+                        Icon(Icons.Filled.List, contentDescription = null, tint = Color.White)
+                        Text("  Checklist", color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 }
             }
 
-            Divider(color = Color.Black, thickness = 1.dp)
+            Divider(color = Color.White, thickness = 1.dp)
 
             Column(
                 Modifier.verticalScroll(rememberScrollState()),
@@ -99,16 +100,16 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(color = Color(204, 190, 237))
+                        .background(color = Color(56, 69, 96))
                 ) {
 
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
                         Text(
-                            "#$number: $name", color = Color.Black, fontWeight = FontWeight.Bold,
+                            "#$number: $name", color = Color.White, fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(top = 10.dp)
                         )
-                        Text("Artist: $artist", color = Color.Black)
+                        Text("Artist: $artist", color = Color.White)
 
                         Image(
                             painter = painterResource(id = art),
@@ -124,7 +125,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                         ) {
                             Text(
                                 "Listened?", modifier = Modifier.padding(top = 12.dp),
-                                color = Color.Black
+                                color = Color.White
                             )
 
                             Checkbox(
@@ -139,7 +140,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                     top = 12.dp,
                                     bottom = 10.dp
                                 ),
-                                color = Color.Black
+                                color = Color.White
                             )
 
                             Image(painter = painterResource(id = R.drawable.rym),
@@ -163,13 +164,13 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
 
 
 
-                Divider(color = Color.Black, thickness = 1.dp)
+                Divider(color = Color.White, thickness = 1.dp)
 
                 for (connection in connections) {
 
                     Box(
                         modifier = Modifier
-                            .background(color = Color(186, 164, 237))
+                            .background(color = Color(50, 56, 70))
                             .wrapContentSize()
                     ) {
 

@@ -1,5 +1,6 @@
 package com.example.vaporwaveappdemo
 
+import android.graphics.Color.rgb
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -27,7 +28,7 @@ import kotlin.random.Random
 fun HomeScreen(navController: NavController) {
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(color = Color(204, 190, 237))) {
+        .background(color = Color(50, 56, 70))) {
 
         Column {
 
@@ -35,7 +36,7 @@ fun HomeScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 20.dp, top = 20.dp, bottom = 10.dp, end = 20.dp)
                     .background(
-                        color = Color(186, 164, 237), shape =
+                        color = Color(56, 69, 96), shape =
                         RoundedCornerShape(
                             topEnd = 20.dp,
                             bottomEnd = 20.dp,
@@ -50,7 +51,7 @@ fun HomeScreen(navController: NavController) {
                         .padding(start = 10.dp, top = 10.dp, bottom = 10.dp, end = 10.dp),
                     textAlign = TextAlign.Center,
                     fontSize = 25.sp,
-                    color = Color.Black
+                    color = Color.White
                 )
             }
 
@@ -61,7 +62,7 @@ fun HomeScreen(navController: NavController) {
                     .padding(start = 20.dp, top = 10.dp, bottom = 10.dp, end = 20.dp),
                 textAlign = TextAlign.Center,
                 fontSize = 15.sp,
-                color = Color.Black
+                color = Color.White
             )
 
             Button(
@@ -118,7 +119,7 @@ fun HomeScreen(navController: NavController) {
                 )
             }
 
-            Divider(color = Color.Black, thickness = 1.dp)
+            Divider(color = Color.White, thickness = 1.dp)
 
             Text(
                 "Alternatively, you could select the option below to start at a random album.",
@@ -126,7 +127,7 @@ fun HomeScreen(navController: NavController) {
                     .padding(start = 20.dp, top = 15.dp, bottom = 10.dp, end = 20.dp),
                 textAlign = TextAlign.Center,
                 fontSize = 15.sp,
-                color = Color.Black
+                color = Color.White
             )
 
             Button(
@@ -165,7 +166,7 @@ fun HomeScreen(navController: NavController) {
                     .align(alignment = Alignment.BottomCenter),
                 textAlign = TextAlign.Center,
                 fontSize = 10.sp,
-                color = Color.Black)
+                color = Color.White)
 
     }
 }
