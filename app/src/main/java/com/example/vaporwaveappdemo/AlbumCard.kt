@@ -219,8 +219,6 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                 }
             }
         }
-
     }
-
 }
 

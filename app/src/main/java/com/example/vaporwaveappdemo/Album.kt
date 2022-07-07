@@ -124,6 +124,14 @@ class Album(number : Int) {
             "https://rateyourmusic.com/release/album/deaths-dynamic-shroud_wmv/faith-in-persona-1/")
         57-> listOf("Blank Banshee 0", "Blank Banshee", R.drawable.album57.toString(),
             "https://rateyourmusic.com/release/album/blank-banshee/blank-banshee-0/")
+        58-> listOf("...I Care Because You Do", "Aphex Twin", R.drawable.album58.toString(),
+            "https://rateyourmusic.com/release/album/aphex-twin/_i-care-because-you-do/")
+        59-> listOf("Seikan Seikou", "t e l e p a t h", R.drawable.album59.toString(),
+            "https://rateyourmusic.com/release/album/t-e-l-e-p-a-t-h-%E3%83%86%E3%83%AC%E3%83%91%E3%82%B7%E3%83%BC%E8%83%BD%E5%8A%9B%E8%80%85/%E6%98%9F%E9%96%93%E6%80%A7%E4%BA%A4-seikan-seikou/")
+        60-> listOf("Cyper Palace", "ICYTWAT", R.drawable.album60.toString(),
+            "https://rateyourmusic.com/release/album/icytwat/cyber-palace.p/")
+        61-> listOf("Blank Banshee 1", "Blank Banshee", R.drawable.album61.toString(),
+            "https://rateyourmusic.com/release/album/blank-banshee/blank-banshee-1/")
 
 
         else -> {listOf("Floral Shoppe", "Macintosh Plus", "R.drawable.album1")}

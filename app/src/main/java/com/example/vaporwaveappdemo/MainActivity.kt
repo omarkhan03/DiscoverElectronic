@@ -31,7 +31,6 @@ class MainActivity : ComponentActivity() {
 
 fun buildChart(): MutableList<Album> {
 
-
     val albumList = listOf(
         Album(1),
         Album(2),
