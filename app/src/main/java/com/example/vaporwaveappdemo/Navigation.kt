@@ -1,5 +1,6 @@
 package com.example.vaporwaveappdemo
 
+import android.widget.ListView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.navigation.NavType
@@ -32,6 +33,9 @@ fun Navigation(albumList : MutableList<Album>) {
                     albumList
                 )
             }
+        }
+        composable(route = Screen.ListScreen.route) {
+            ListScreen(navController = navController, albumList)
         }
     }
 

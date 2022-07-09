@@ -1,7 +1,8 @@
 package com.example.vaporwaveappdemo
 
-import androidx.compose.ui.state.ToggleableState
-
+/**
+ *
+ */
 fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
 
     val connections = when (number) {
@@ -111,7 +112,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
 
         17-> hashMapOf(
             1 to Pair(15, "More trip hop (back to Mezzanine)."),
-            2 to Pair(15, "Back to Endtroducing."),
+            2 to Pair(22, "Back to Endtroducing."),
         )
 
         18-> hashMapOf(
@@ -240,6 +241,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
 
         40-> hashMapOf(
             1 to Pair(41, "Quieter."),
+            2 to Pair(3, "Not your thing? Back to Lift Your Skinny Fists."),
         )
 
         41-> hashMapOf(
@@ -315,7 +317,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
         54-> hashMapOf(
             1 to Pair(55, "Like this but glitchier."),
             2 to Pair(57, "More rhythmic and sounds like Windows OS."),
-            3 to Pair(21, "Like this, but drenched in ambience."),
+            3 to Pair(59, "Like this, but drenched in ambience."),
             4 to Pair(21, "Back to Since I Left You"),
         )
 
@@ -348,7 +350,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
 
         60-> hashMapOf(
             1 to Pair(45, "Less trap, more melody and glitch."),
-            2 to Pair(54, "Back to Blank Banshee."),
+            2 to Pair(57, "Back to Blank Banshee."),
         )
 
         61-> hashMapOf(

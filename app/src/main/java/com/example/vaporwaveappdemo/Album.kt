@@ -1,9 +1,10 @@
 package com.example.vaporwaveappdemo
 
+import android.content.SharedPreferences
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 
-class Album(number : Int) {
+class Album(number : Int, sp: SharedPreferences) {
 
     val details = when ( number ) {
         1-> listOf("Kid A", "Radiohead", R.drawable.album1.toString(),
@@ -143,6 +144,6 @@ class Album(number : Int) {
 
     val rym = details[3]
 
-    val listened = mutableStateOf(false)
-
+    val editListened = sp.edit()
+    val listened = mutableStateOf(sp.getBoolean(number.toString(), false))
 }

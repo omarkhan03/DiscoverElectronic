@@ -6,6 +6,7 @@ import android.graphics.Color.rgb
 import android.inputmethodservice.Keyboard
 import android.media.Image
 import android.net.Uri
+import android.service.autofill.Validators.not
 import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -44,6 +45,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
     val rym = album.rym
     val art = album.art
     val listened = album.listened
+    val editListened = album.editListened
 
     val connections = getConnections(number)
 
@@ -79,7 +81,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                 Box(
                     modifier = Modifier
                         .clickable {
-                            /*todo*/
+                            navController.navigate(com.example.vaporwaveappdemo.Screen.ListScreen.route)
                         }
                         .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
                 ) {
@@ -130,7 +132,13 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
 
                             Checkbox(
                                 checked = listened.value,
-                                onCheckedChange = { listened.value = it },
+                                onCheckedChange = {
+
+                                    listened.value = it
+                                    editListened.putBoolean(number.toString(), it)
+                                    editListened.commit()
+                                                  },
+                                colors = CheckboxDefaults.colors(checkmarkColor = Color.Black)
                             )
 
                             Text(
@@ -203,7 +211,8 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                     textAlign = TextAlign.Center,
                                     modifier = Modifier
                                         .width(250.dp)
-                                        .padding(end = 10.dp)
+                                        .padding(end = 10.dp),
+                                    color = Color.Black
                                 )
                                 Icon(
                                     imageVector = Icons.Filled.ArrowForward,

@@ -4,7 +4,9 @@ import android.graphics.Color.rgb
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -30,7 +32,7 @@ fun HomeScreen(navController: NavController) {
         .fillMaxSize()
         .background(color = Color(50, 56, 70))) {
 
-        Column {
+        Column(Modifier.verticalScroll(rememberScrollState())) {
 
             Box(
                 modifier = Modifier
@@ -82,7 +84,8 @@ fun HomeScreen(navController: NavController) {
                 Text(
                     text = "You are a hip hop fan.",
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.width(250.dp).padding(end = 10.dp)
+                    modifier = Modifier.width(250.dp).padding(end = 10.dp),
+                    color = Color.Black
                 )
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
@@ -109,7 +112,8 @@ fun HomeScreen(navController: NavController) {
                 Text(
                     text = "You are a rock fan.",
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.width(250.dp).padding(end = 10.dp)
+                    modifier = Modifier.width(250.dp).padding(end = 10.dp),
+                    color = Color.Black
                 )
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
@@ -147,7 +151,8 @@ fun HomeScreen(navController: NavController) {
                 Text(
                     text = "Random album!",
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.width(250.dp).padding(end = 10.dp)
+                    modifier = Modifier.width(250.dp).padding(end = 10.dp),
+                    color = Color.Black
                 )
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
