@@ -1,6 +1,9 @@
 package com.example.vaporwaveappdemo
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat.startActivity
 import com.example.vaporwaveappdemo.ui.theme.VaporwaveAppDemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,3 +37,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+

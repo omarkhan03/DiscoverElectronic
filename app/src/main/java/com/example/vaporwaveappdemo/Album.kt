@@ -1,10 +1,13 @@
 package com.example.vaporwaveappdemo
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 
-class Album(number : Int, sp: SharedPreferences) {
+class Album(val number: Int, sp: SharedPreferences) {
 
     val details = when ( number ) {
         1-> listOf("Kid A", "Radiohead", R.drawable.album1.toString(),
@@ -138,11 +141,25 @@ class Album(number : Int, sp: SharedPreferences) {
         else -> {listOf("Floral Shoppe", "Macintosh Plus", "R.drawable.album1")}
     }
 
+    /*
+    fun openYoutubeLink(youtubeID: String) {
+        val intentApp = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$youtubeID"))
+        val intentBrowser = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=$youtubeID"))
+        try {
+            this.startActivity(intentApp)
+        } catch (ex: ActivityNotFoundException) {
+            this.startActivity(intentBrowser)
+        }
+    }
+
+     */
+
     val name = details[0]
     val artist = details[1]
     val art = details[2].toInt()
 
     val rym = details[3]
+    val yt = /*details[4]*/ "ojmk5tSj0sE"
 
     val editListened = sp.edit()
     val listened = mutableStateOf(sp.getBoolean(number.toString(), false))

@@ -1,5 +1,6 @@
 package com.example.vaporwaveappdemo
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color.rgb
@@ -43,6 +44,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
     val name = album.name
     val artist = album.artist
     val rym = album.rym
+    val yt = album.yt
     val art = album.art
     val listened = album.listened
     val editListened = album.editListened
@@ -50,7 +52,12 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
     val connections = getConnections(number)
 
     val context = LocalContext.current
-    val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(rym)) }
+
+    val rymIntent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(rym)) }
+    val intentYTApp =
+        remember { Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$yt")) }
+    val intentYTBrowser =
+        remember { Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=$yt")) }
 
     Box(
         modifier = Modifier
@@ -158,19 +165,41 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                         enabled = true,
                                         onClickLabel = "Clickable image",
                                         onClick = {
-                                            context.startActivity(intent)
+                                            context.startActivity(rymIntent)
                                         }
                                     )
                                     .size(35.dp)
                                     .padding(start = 8.dp, top = 10.dp))
                         }
 
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                "Listen here:   ", modifier = Modifier.padding(top = 3.dp),
+                                color = Color.White
+                            )
+                            Image(painter = painterResource(id = R.drawable.youtube_logo),
+                                contentDescription = "Youtube link",
+                                modifier = Modifier
+                                    .clickable(
+                                        enabled = true,
+                                        onClickLabel = "Clickable image",
+                                        onClick = {
+                                            try {
+                                                context.startActivity(intentYTApp)
+                                            } catch (ex: ActivityNotFoundException) {
+                                                context.startActivity(intentYTBrowser)
+                                            }
+
+                                        }
+                                    )
+                                    .size(40.dp)
+                                    .padding(bottom = 10.dp))
+                        }
                     }
-
-
                 }
-
-
 
                 Divider(color = Color.White, thickness = 1.dp)
 

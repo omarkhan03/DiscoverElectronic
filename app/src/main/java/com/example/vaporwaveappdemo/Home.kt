@@ -161,17 +161,16 @@ fun HomeScreen(navController: NavController) {
                     tint = Color.Black
                 )
             }
-        }
 
             Text("This is not a perfect chart. It is designed to provide a high level " +
                     "overview of electronic music as a whole. Links to more info on each album has " +
                     "been provided for users to further explore electronic music in depth.\n\n" +
                     "Created by Omar Khan.\nOriginal chart was created by Reddit user u/Beef_The_Thief.",
-                modifier=Modifier.fillMaxWidth().padding(start = 10.dp, top = 20.dp, bottom = 10.dp, end = 10.dp)
-                    .align(alignment = Alignment.BottomCenter),
+                modifier=Modifier.fillMaxWidth().padding(start = 10.dp, top = 20.dp, bottom = 10.dp, end = 10.dp),
                 textAlign = TextAlign.Center,
                 fontSize = 10.sp,
                 color = Color.White)
+        }
 
     }
 }

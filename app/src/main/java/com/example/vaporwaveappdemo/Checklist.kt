@@ -59,20 +59,7 @@ fun ListScreen(navController : NavController, albumList: MutableList<Album>) {
                         Text("  Home", color = androidx.compose.ui.graphics.Color.White, fontWeight = FontWeight.Bold)
                     }
                 }
-
-                Box(
-                    modifier = Modifier
-                        .clickable {
-                            navController.navigate(com.example.vaporwaveappdemo.Screen.AlbumScreen.route)
-                        }
-                        .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
-                ) {
-                    Row {
-                        Icon(Icons.Filled.List, contentDescription = null, tint = androidx.compose.ui.graphics.Color.White)
-                        Text(" ", color = androidx.compose.ui.graphics.Color.White, fontWeight = FontWeight.Bold)
-                    }
                 }
-            }
 
             Divider(color = androidx.compose.ui.graphics.Color.White, thickness = 1.dp)
 
@@ -81,24 +68,43 @@ fun ListScreen(navController : NavController, albumList: MutableList<Album>) {
                 items(
                     items = albums,
                     itemContent = {
-                        ListItem(album = it)
+                        ListItem(navController, album = it)
                     }
                 )
             }
+            }
         }
-
-
-    }
 }
 
 @Composable
-private fun ListItem(album : Album) {
+private fun ListItem(navController : NavController, album : Album) {
+
+    val color = when(album.listened.value) {
+        false -> Color(56, 69, 96)
+        true -> Color(50, 56, 70)
+    }
+
+    val message = when(album.listened.value) {
+        false -> "Not yet listened"
+        true -> "Listened!"
+    }
+
+    val messageColor = when(album.listened.value) {
+        false -> androidx.compose.ui.graphics.Color.Yellow
+        true -> Color(243, 146, 55)
+    }
+
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { navController.navigate(
+                com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs(
+                    (album.number)
+                )
+            ) },
         elevation = 2.dp,
-        backgroundColor = Color(56, 69, 96),
+        backgroundColor = color,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
     ) {
         Row {
@@ -109,8 +115,13 @@ private fun ListItem(album : Album) {
                     .fillMaxWidth()
                     .align(Alignment.CenterVertically)
             ) {
+                Row {
+                    Text(text = "#${album.number}    ", style = typography.caption)
+                    Text(text = message, style = typography.caption, color = messageColor)
+                }
+
                 Text(text = album.name, style = typography.h6)
-                Text(text = album.artist, style = typography.caption)
+                Text(text = "Artist: ${album.artist}", style = typography.caption)
             }
         }
     }
