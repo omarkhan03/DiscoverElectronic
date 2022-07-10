@@ -56,7 +56,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
 
         8-> hashMapOf(
             1 to Pair(9, "Like this, but darker. More mysterious."),
-            2 to Pair(2, "Something that feels more “electric”."),
+            2 to Pair(2, "Something that feels more “electric” (back to SAW 85-92)."),
             3 to Pair(12, "Tighter beats (back to Midnight Menu).")
 
         )
@@ -74,8 +74,8 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
 
         11-> hashMapOf(
             1 to Pair(12, "More strange and glitchy."),
-            2 to Pair(18, "Similarly lush and organic."),
-            3 to Pair(20, "Turn it into a party!"),
+            2 to Pair(20, "Turn it into a party!"),
+            3 to Pair(18, "Similarly lush and organic."),
             4 to Pair(13, "More like this!")
         )
 
@@ -116,7 +116,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
         )
 
         18-> hashMapOf(
-            1 to Pair(11, "Similarly lush and organic"),
+            1 to Pair(11, "Similarly lush and organic (back to Metaphorical Music)."),
             2 to Pair(19, "Chill it out!")
         )
 
@@ -136,7 +136,7 @@ fun getConnections(number : Int) : HashMap<Int, Pair<Int,String>> {
         )
 
         22-> hashMapOf(
-            1 to Pair(13, "Similarly nocturnal, mysterious, and rhythmic."),
+            1 to Pair(17, "Similarly nocturnal, mysterious, and rhythmic."),
             2 to Pair(21, "Back to Since I Left You."),
             3 to Pair(24, "Back to Alcachofa."),
         )

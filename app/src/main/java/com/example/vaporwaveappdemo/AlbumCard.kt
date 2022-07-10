@@ -59,6 +59,8 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
     val intentYTBrowser =
         remember { Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=$yt")) }
 
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -168,8 +170,8 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                             context.startActivity(rymIntent)
                                         }
                                     )
-                                    .size(35.dp)
-                                    .padding(start = 8.dp, top = 10.dp))
+                                    .size(45.dp)
+                                    .padding(start = 8.dp, top = 10.dp, end = 8.dp, bottom = 10.dp))
                         }
 
                         Row(
@@ -197,6 +199,24 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                     )
                                     .size(40.dp)
                                     .padding(bottom = 10.dp))
+
+                            Image(painter = painterResource(id = R.drawable.spotify),
+                                contentDescription = "Spotify link",
+                                modifier = Modifier
+                                    .clickable(
+                                        enabled = true,
+                                        onClickLabel = "Clickable image",
+                                        onClick = {
+                                            try {
+                                                context.startActivity(intentYTApp)
+                                            } catch (ex: ActivityNotFoundException) {
+                                                context.startActivity(intentYTBrowser)
+                                            }
+
+                                        }
+                                    )
+                                    .size(45.dp)
+                                    .padding(bottom = 16.dp, top = 2.dp))
                         }
                     }
                 }
