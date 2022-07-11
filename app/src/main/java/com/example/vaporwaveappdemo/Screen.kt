@@ -1,5 +1,8 @@
 package com.example.vaporwaveappdemo
 
+/**
+ * Helper class for Navigation.kt
+ */
 sealed class Screen(val route: String) {
     object HomeScreen : Screen("home_screen")
     object AlbumScreen : Screen("album_screen")

@@ -27,11 +27,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import kotlin.random.Random
 
+/**
+ * Composable for the the home screen.
+ */
 @Composable
 fun HomeScreen(navController: NavController) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color(50, 56, 70))) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(50, 56, 70))
+    ) {
 
         Column(Modifier.verticalScroll(rememberScrollState())) {
 
@@ -154,7 +159,9 @@ fun HomeScreen(navController: NavController) {
                 Text(
                     text = "You are neither.\nJust drop in!",
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.width(250.dp).padding(end = 10.dp),
+                    modifier = Modifier
+                        .width(250.dp)
+                        .padding(end = 10.dp),
                     color = Color.Black
                 )
                 Icon(
@@ -212,16 +219,18 @@ fun HomeScreen(navController: NavController) {
                 )
             }
 
-            Text("This is not a perfect chart. It is designed to provide a high level " +
-                    "overview of electronic music as a whole. Links to more info on each album has " +
-                    "been provided for users to further explore electronic music in depth.\n\n" +
-                    "Created by Omar Khan.\nOriginal chart was created by Reddit user u/Beef_The_Thief.",
-                modifier= Modifier
+            Text(
+                "This is not a perfect chart. It is designed to provide a high level " +
+                        "overview of electronic music as a whole. Links to more info on each album has " +
+                        "been provided for users to further explore electronic music in depth.\n\n" +
+                        "Created by Omar Khan.\nOriginal chart was created by Reddit user u/Beef_The_Thief.",
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 10.dp, top = 20.dp, bottom = 10.dp, end = 10.dp),
                 textAlign = TextAlign.Center,
                 fontSize = 10.sp,
-                color = Color.White)
+                color = Color.White
+            )
         }
 
     }

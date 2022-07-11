@@ -1,42 +1,28 @@
 package com.example.vaporwaveappdemo
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color.rgb
-import android.inputmethodservice.Keyboard
-import android.media.Image
 import android.net.Uri
-import android.service.autofill.Validators.not
-import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key.Companion.G
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
-import androidx.navigation.compose.composable
-import com.example.vaporwaveappdemo.ui.theme.Purple200
-import com.example.vaporwaveappdemo.ui.theme.Purple500
-import com.example.vaporwaveappdemo.ui.theme.Purple700
 
+/**
+ * Composable for the screen that displays each individual album.
+ */
 @Composable
 fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<Album>) {
 
@@ -45,21 +31,25 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
     val artist = album.artist
     val rym = album.rym
     val yt = album.yt
+    val spotify = album.spotify
     val art = album.art
     val listened = album.listened
     val editListened = album.editListened
-
     val connections = getConnections(number)
 
+    // Provides context and intents to each external link in the album view.
     val context = LocalContext.current
-
     val rymIntent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(rym)) }
     val intentYTApp =
         remember { Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$yt")) }
     val intentYTBrowser =
         remember { Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=$yt")) }
-
-
+    val intentSpotify = remember {
+        Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://open.spotify.com/album/$spotify")
+        )
+    }
 
     Box(
         modifier = Modifier
@@ -69,38 +59,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
 
         Column {
 
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .clickable {
-                            navController.navigate(com.example.vaporwaveappdemo.Screen.HomeScreen.route)
-                        }
-                        .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
-                ) {
-                    Row {
-                        Icon(Icons.Filled.Home, contentDescription = null, tint = Color.White)
-                        Text("  Home", color = Color.White, fontWeight = FontWeight.Bold)
-                    }
-                }
-
-                Box(
-                    modifier = Modifier
-                        .clickable {
-                            navController.navigate(com.example.vaporwaveappdemo.Screen.ListScreen.route)
-                        }
-                        .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
-                ) {
-                    Row {
-                        Icon(Icons.Filled.List, contentDescription = null, tint = Color.White)
-                        Text("  Checklist", color = Color.White, fontWeight = FontWeight.Bold)
-                    }
-                }
-            }
-
+            TopNavBar(navController = navController)
             Divider(color = Color.White, thickness = 1.dp)
 
             Column(
@@ -146,7 +105,7 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                     listened.value = it
                                     editListened.putBoolean(number.toString(), it)
                                     editListened.commit()
-                                                  },
+                                },
                                 colors = CheckboxDefaults.colors(checkmarkColor = Color.Black)
                             )
 
@@ -200,80 +159,124 @@ fun AlbumCard(navController: NavController, number: Int, albumList: MutableList<
                                     .size(40.dp)
                                     .padding(bottom = 10.dp))
 
-                            Image(painter = painterResource(id = R.drawable.spotify),
-                                contentDescription = "Spotify link",
-                                modifier = Modifier
-                                    .clickable(
-                                        enabled = true,
-                                        onClickLabel = "Clickable image",
-                                        onClick = {
-                                            try {
-                                                context.startActivity(intentYTApp)
-                                            } catch (ex: ActivityNotFoundException) {
-                                                context.startActivity(intentYTBrowser)
-                                            }
+                            if (spotify != "null") {
+                                Image(painter = painterResource(id = R.drawable.spotify),
+                                    contentDescription = "Spotify link",
+                                    modifier = Modifier
+                                        .clickable(
+                                            enabled = true,
+                                            onClickLabel = "Clickable image",
+                                            onClick = {
+                                                context.startActivity(intentSpotify)
 
-                                        }
-                                    )
-                                    .size(45.dp)
-                                    .padding(bottom = 16.dp, top = 2.dp))
+                                            }
+                                        )
+                                        .size(45.dp)
+                                        .padding(bottom = 16.dp, top = 2.dp))
+                            }
                         }
+
                     }
                 }
 
                 Divider(color = Color.White, thickness = 1.dp)
+                FlowchartOptions(navController = navController, connections = connections)
+            }
+        }
+    }
+}
 
-                for (connection in connections) {
+/**
+ * Composable for the top navigation bar.
+ */
+@Composable
+private fun TopNavBar(navController: NavController) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
 
-                    Box(
+        Box(
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(com.example.vaporwaveappdemo.Screen.HomeScreen.route)
+                }
+                .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
+        ) {
+            Row {
+                Icon(Icons.Filled.Home, contentDescription = null, tint = Color.White)
+                Text("  Home", color = Color.White, fontWeight = FontWeight.Bold)
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(com.example.vaporwaveappdemo.Screen.ListScreen.route)
+                }
+                .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
+        ) {
+            Row {
+                Icon(Icons.Filled.List, contentDescription = null, tint = Color.White)
+                Text("  Checklist", color = Color.White, fontWeight = FontWeight.Bold)
+            }
+        }
+    }
+}
+
+/**
+ * Composable for the flowchart buttons at the bottom of the screen.
+ */
+@Composable
+private fun FlowchartOptions(navController: NavController, connections: HashMap<Int, Pair<Int, String>>) {
+
+    for (connection in connections) {
+        Box(
+            modifier = Modifier
+                .background(color = Color(50, 56, 70))
+                .wrapContentSize()
+        ) {
+
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Button(
+                    onClick = {
+                        navController.navigate(
+                            com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs(
+                                (connection.value.first)
+                            )
+                        )
+                    }, shape = RoundedCornerShape(
+                        topEnd = 30.dp,
+                        bottomEnd = 30.dp
+                    ), modifier = Modifier
+                        .padding(top = 10.dp, start = 5.dp)
+                        .border(
+                            1.dp, color = Color.Black, shape = RoundedCornerShape(
+                                topEnd = 30.dp,
+                                bottomEnd = 30.dp
+                            )
+                        )
+                ) {
+
+                    Text(
+                        text = connection.value.second,
+                        textAlign = TextAlign.Center,
                         modifier = Modifier
-                            .background(color = Color(50, 56, 70))
-                            .wrapContentSize()
-                    ) {
-
-                        Row(
-                            horizontalArrangement = Arrangement.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Button(
-                                onClick = {
-                                    navController.navigate(
-                                        com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs(
-                                            (connection.value.first)
-                                        )
-                                    )
-                                }, shape = RoundedCornerShape(
-                                    topEnd = 30.dp,
-                                    bottomEnd = 30.dp
-                                ), modifier = Modifier
-                                    .padding(top = 10.dp, start = 5.dp)
-                                    .border(
-                                        1.dp, color = Color.Black, shape = RoundedCornerShape(
-                                            topEnd = 30.dp,
-                                            bottomEnd = 30.dp
-                                        )
-                                    )
-                            ) {
-
-                                Text(
-                                    text = connection.value.second,
-                                    textAlign = TextAlign.Center,
-                                    modifier = Modifier
-                                        .width(250.dp)
-                                        .padding(end = 10.dp),
-                                    color = Color.Black
-                                )
-                                Icon(
-                                    imageVector = Icons.Filled.ArrowForward,
-                                    contentDescription = "Localized description",
-                                    modifier = Modifier
-                                        .size(50.dp)
-                                        .padding(),
-                                    tint = Color.Black
-                                )
-                            }
-                        }
-                    }
+                            .width(250.dp)
+                            .padding(end = 10.dp),
+                        color = Color.Black
+                    )
+                    Icon(
+                        imageVector = Icons.Filled.ArrowForward,
+                        contentDescription = "Localized description",
+                        modifier = Modifier
+                            .size(50.dp)
+                            .padding(),
+                        tint = Color.Black
+                    )
                 }
             }
         }

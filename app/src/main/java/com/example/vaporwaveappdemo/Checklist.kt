@@ -29,8 +29,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
+/**
+ * Composable for the screen that displays the checklist of all albums.
+ */
 @Composable
-fun ListScreen(navController : NavController, albumList: MutableList<Album>) {
+fun ListScreen(navController: NavController, albumList: MutableList<Album>) {
 
     val albums = remember { albumList }
 
@@ -41,29 +44,11 @@ fun ListScreen(navController : NavController, albumList: MutableList<Album>) {
     ) {
 
         Column {
-
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .clickable {
-                            navController.navigate(com.example.vaporwaveappdemo.Screen.HomeScreen.route)
-                        }
-                        .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
-                ) {
-                    Row {
-                        Icon(Icons.Filled.Home, contentDescription = null, tint = androidx.compose.ui.graphics.Color.White)
-                        Text("  Home", color = androidx.compose.ui.graphics.Color.White, fontWeight = FontWeight.Bold)
-                    }
-                }
-                }
-
+            TopNavBar(navController = navController)
             Divider(color = androidx.compose.ui.graphics.Color.White, thickness = 1.dp)
 
-            LazyColumn(contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+            LazyColumn(
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
             ) {
                 items(
                     items = albums,
@@ -72,24 +57,60 @@ fun ListScreen(navController : NavController, albumList: MutableList<Album>) {
                     }
                 )
             }
-            }
         }
+    }
 }
 
+/**
+ * Composable for the top navigation bar.
+ */
 @Composable
-private fun ListItem(navController : NavController, album : Album) {
+private fun TopNavBar(navController: NavController) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
 
-    val color = when(album.listened.value) {
+        Box(
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(com.example.vaporwaveappdemo.Screen.HomeScreen.route)
+                }
+                .padding(top = 10.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
+        ) {
+            Row {
+                Icon(
+                    Icons.Filled.Home,
+                    contentDescription = null,
+                    tint = androidx.compose.ui.graphics.Color.White
+                )
+                Text(
+                    "  Home",
+                    color = androidx.compose.ui.graphics.Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Composable for each list item.
+ */
+@Composable
+private fun ListItem(navController: NavController, album: Album) {
+
+    val color = when (album.listened.value) {
         false -> Color(56, 69, 96)
         true -> Color(50, 56, 70)
     }
 
-    val message = when(album.listened.value) {
+    val message = when (album.listened.value) {
         false -> "Not yet listened"
         true -> "Listened!"
     }
 
-    val messageColor = when(album.listened.value) {
+    val messageColor = when (album.listened.value) {
         false -> androidx.compose.ui.graphics.Color.Yellow
         true -> Color(243, 146, 55)
     }
@@ -98,11 +119,13 @@ private fun ListItem(navController : NavController, album : Album) {
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .fillMaxWidth()
-            .clickable { navController.navigate(
-                com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs(
-                    (album.number)
+            .clickable {
+                navController.navigate(
+                    com.example.vaporwaveappdemo.Screen.AlbumScreen.withArgs(
+                        (album.number)
+                    )
                 )
-            ) },
+            },
         elevation = 2.dp,
         backgroundColor = color,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
@@ -127,8 +150,11 @@ private fun ListItem(navController : NavController, album : Album) {
     }
 }
 
+/**
+ * Composable for each list image.
+ */
 @Composable
-private fun ListImage(album : Album) {
+private fun ListImage(album: Album) {
     Image(
         painter = painterResource(id = album.art),
         contentDescription = null,

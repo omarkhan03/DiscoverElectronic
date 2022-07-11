@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         // Shared preferences to keep track of listened albums
-        val listened = getSharedPreferences("Listened?",Context.MODE_PRIVATE)
+        val listened = getSharedPreferences("Listened?", Context.MODE_PRIVATE)
 
         setContent {
             VaporwaveAppDemoTheme {
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     // Builds the list containing every album in the database
-                    val albumList = MutableList(61) { index -> Album(index+1, listened) }
+                    val albumList = MutableList(61) { index -> Album(index + 1, listened) }
                     Navigation(albumList)
                 }
             }
