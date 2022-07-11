@@ -1,6 +1,6 @@
 # Welcome to Discover Electronic!
 
-![Discover-Electronic-Feature-Graphic-1](https://i.ibb.co/rvrQGR7/Discover-Electronic-Feature-Graphic-1.png)
+![Discover-Electronic-Feature-Graphic-1](https://i.ibb.co/FJX2q5P/Untitled-drawing-7.png)
 
 Discover electronic is an android app built to introduce non-electronic music listeners to electronic music.
 
