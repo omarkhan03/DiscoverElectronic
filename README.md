@@ -5,7 +5,8 @@
 Discover electronic is an android app built to introduce non-electronic music listeners to electronic music.
 
 ## Download the app
-Rollout for the app has begun. It will be available on the Play Store shortly.
+The app is on the [Play Store](https://play.google.com/store/apps/details?id=com.duppy.discoverelectronic) and can be installed on your android device now!
+
 
 ## Using the app
 To begin, select what kind of music you typically listen to. You will then be taken to your starting album on the electronic music flowchart. 
